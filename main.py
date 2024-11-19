@@ -8,8 +8,15 @@ class Formula:
 
 
 # Kinematics
-velocity, initial_velocity, average_velocity, velocity_change, acceleration, gravity = "v", "v0", "va", "dv", "a", "g"
+velocity, initial_velocity, average_velocity, velocity_change, acceleration = "v", "v0", "va", "dv", "a"
 initial_position, position_change, position, time = "x0", "dx", "x", "t"
+
+# Dynamics
+mass, all_masses, all_positions, center_of_mass = "m", "all_m", "all_x", "cm"
+
+variables = [velocity, initial_velocity, average_velocity, velocity_change, acceleration, initial_position,
+             position_change, position, time, mass, all_masses, all_positions, center_of_mass]
+print("variables:", variables)
 
 formulas = [
     # Kinematics
@@ -18,9 +25,10 @@ formulas = [
     Formula("Velocity", [initial_velocity, acceleration, time, velocity], "v=v0+a*t"),
     Formula("Distance (no acceleration)", [average_velocity, time, initial_position, position], "x=va*t+x0"),
     Formula("Distance (with acceleration)", [initial_position, initial_velocity, time, acceleration, position], "x=x0+v0*t+.5*a*t^2"),
-    Formula("Velocity Squared", [initial_velocity, acceleration, initial_position, position, velocity], "v^2=v0^2+2a(x-x0)")
+    Formula("Velocity Squared", [initial_velocity, acceleration, initial_position, position, velocity], "v^2=v0^2+2a(x-x0)"),
+    # Dynamics
+    Formula("Center of Mass", [all_masses, all_positions, center_of_mass], "cm=(Σmx)/(Σm)")
 ]
-print(formulas)
 known = input("Enter Known Information: ").split(",")
 found = []
 output = input("What are you solving for?: ")
